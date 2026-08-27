@@ -1,0 +1,22 @@
+# Dependencies (Vercel runs the install itself)
+node_modules
+
+# Build output & generated types (Vercel builds on its servers)
+dist
+.astro
+.output
+.vercel
+
+# Local scratch / large source drops not needed for the build
+temp
+AURESCA.svg
+regenerate_this_image_1920_x1080_202608160240.png
+
+# Git
+.git
+
+# Env & logs
+.env
+.env.local
+.env.*.local
+*.log
