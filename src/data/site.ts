@@ -218,7 +218,7 @@ export const about = {
   eyebrow: "About Us",
   heading: { lead: "Beauty That Begins", tail: "With Care" },
   body: "At Auresca Care, we believe true beauty is a reflection of inner balance and self-care. Our treatments are designed to nourish, restore and enhance your natural glow.",
-  image: "/images/about-clinic.webp",
+  image: "/images/service-skin-facial.jpg",
   local: true,
   cta: { label: "Learn More", href: "/#services" },
   features: [
@@ -423,7 +423,7 @@ export const serviceCategories: ServiceCategory[] = [
  * shot — the band is about how the clinic works, and the stock bottle that used
  * to sit here carried another brand's label.
  */
-export const whyUsImage = "/images/service-skin-facial.jpg";
+export const whyUsImage = "/images/about-clinic.webp";
 
 /** Treatment categories used for the Real Results filter tabs (first = default). */
 export const resultCategories = [
