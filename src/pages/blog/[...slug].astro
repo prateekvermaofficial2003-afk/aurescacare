@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import Icon from "@/components/Icon.astro";
 import { getPosts, readMinutes, type Post } from "@/lib/blog";
 import { img, srcset, formatDate } from "@/lib/helpers";
+import { SITE_URL, breadcrumbSchema, articleSchema } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -17,12 +18,41 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const sset = srcset(post.data.coverImage, [640, 900, 1100], 560);
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const coverAbs = new URL(post.data.coverImage, Astro.site).href;
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", url: `${SITE_URL}/` },
+  { name: "Journal", url: `${SITE_URL}/blog` },
+  { name: post.data.title, url },
+]);
+
+const article = articleSchema({
+  title: post.data.title,
+  description: post.data.excerpt,
+  image: coverAbs,
+  datePublished: post.data.publishedAt.toISOString(),
+  url,
+  author: post.data.author,
+});
 ---
 
 <Layout
   title={`${post.data.title} — Auresca Care`}
   description={post.data.excerpt}
+  image={post.data.coverImage}
 >
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(article)}
+    is:inline
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbs)}
+    is:inline
+  />
   <article class="bg-ivory">
     <header class="bg-cream bg-grain">
       <div class="container-content max-w-7xl py-14 lg:py-16">

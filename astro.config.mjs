@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, envField, fontProviders } from "astro/config";
 import vercel from "@astrojs/vercel";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,6 +11,14 @@ export default defineConfig({
   // appointment endpoint opts out (`export const prerender = false`) and ships
   // as a single Vercel function.
   adapter: vercel(),
+
+  // Auto-generated at build → /sitemap-index.xml. The post-submission
+  // thank-you page carries no search value and is noindex, so it is excluded.
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes("/appointment-success"),
+    }),
+  ],
 
   env: {
     schema: {

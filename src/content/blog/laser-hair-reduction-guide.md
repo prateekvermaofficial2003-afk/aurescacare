@@ -3,7 +3,7 @@ title: "Is laser hair reduction worth it? An honest clinic guide"
 excerpt: "Sessions, sensations, results and myths: everything we wish every client knew before their first appointment."
 category: "Laser"
 coverImage: "/images/hero-laser.webp"
-author: "Dr. Kavya Rao"
+author: "Auresca Care Team"
 publishedAt: 2026-05-12
 readMinutes: 4
 ---

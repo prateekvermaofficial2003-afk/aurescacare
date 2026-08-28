@@ -3,7 +3,7 @@ title: "The 5-step evening routine your skin barrier actually wants"
 excerpt: "Forget the 12-step trend. Here is the minimal, dermatologist-approved routine that repairs and protects while you sleep."
 category: "Skincare"
 coverImage: "/images/service-body-massage.jpg"
-author: "Dr. Kavya Rao"
+author: "Auresca Care Team"
 publishedAt: 2026-06-10
 readMinutes: 5
 ---

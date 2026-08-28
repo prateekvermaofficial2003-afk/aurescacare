@@ -4,21 +4,33 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import AppointmentModal from "@/components/AppointmentModal.astro";
 import { site } from "@/data/site";
+import { clinicSchema, websiteSchema, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import "@/styles/global.css";
 
 interface Props {
   title?: string;
   description?: string;
   bodyClass?: string;
+  /** Absolute or root-relative social share image; falls back to the brand OG. */
+  image?: string;
+  /** Keep a page (e.g. the booking thank-you) out of the index. */
+  noindex?: boolean;
 }
 
 const {
   title = `${site.name} — Reveal · Restore · Radiate`,
   description = site.shortPitch,
   bodyClass = "",
+  image,
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Social image: a page's own hero when given, else the branded default. Both
+// are resolved to absolute URLs — crawlers reject relative og:image paths.
+const ogImage = image
+  ? new URL(image, Astro.site).href
+  : DEFAULT_OG_IMAGE;
 ---
 
 <!doctype html>
@@ -43,6 +55,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F9F7F2" />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="generator" content={Astro.generator} />
     <!-- Enable JS-only entrance animations early to avoid a flash -->
     <script is:inline>
@@ -83,11 +96,36 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — ${site.tagline}`} />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Favicon (inline lotus mark — no extra request) -->
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234E5645'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23E8D2A3' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Structured data: the clinic (LocalBusiness) + the site, on every page -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(clinicSchema)}
+      is:inline
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
+      is:inline
     />
 
     <!-- Self-hosted fonts (see `fonts` in astro.config.mjs) -->

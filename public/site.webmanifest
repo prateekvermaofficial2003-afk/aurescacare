@@ -1,0 +1,16 @@
+{
+  "name": "Auresca Care",
+  "short_name": "Auresca",
+  "description": "Dermatology-led skin, hair & aesthetic clinic in Gurugram.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F7F2",
+  "theme_color": "#F9F7F2",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
