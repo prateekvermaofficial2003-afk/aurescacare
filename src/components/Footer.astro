@@ -19,20 +19,8 @@ const footerExplore = [
 ];
 ---
 
-<!-- The footer floats free of the page: a rounded sage island inset on an ivory
-     gutter, lifted by a soft shadow so it reads as a separate panel rather than
-     a slab bolted to the bottom edge. -->
-<footer class="bg-ivory p-4 sm:p-6 lg:p-8">
-  <div
-    class="relative isolate overflow-hidden rounded-[2rem] bg-sage text-white/85 shadow-[0_40px_90px_-45px_rgba(78,86,69,0.8)] ring-1 ring-white/10 lg:rounded-[3rem]"
-  >
-    <!-- soft gold bloom, top-right — lifts the flat panel without a hard edge -->
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full bg-gold/20 blur-3xl"
-    >
-    </div>
-    <div class="container-wide py-16 lg:py-20">
+<footer class="bg-sage text-white/85">
+  <div class="container-wide py-16 lg:py-20">
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-10" data-stagger="120">
       <!-- Brand + big logo + socials -->
       <div class="reveal lg:col-span-4">
@@ -152,7 +140,6 @@ const footerExplore = [
     >
       <p>© {year} {site.name}. All rights reserved.</p>
       <p class="tracking-wide">{site.tagline}</p>
-    </div>
     </div>
   </div>
 </footer>
