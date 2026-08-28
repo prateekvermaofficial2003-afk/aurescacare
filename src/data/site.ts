@@ -218,7 +218,7 @@ export const about = {
   eyebrow: "About Us",
   heading: { lead: "Beauty That Begins", tail: "With Care" },
   body: "At Auresca Care, we believe true beauty is a reflection of inner balance and self-care. Our treatments are designed to nourish, restore and enhance your natural glow.",
-  image: "/images/service-skin-facial.jpg",
+  image: "/images/about-reception.webp",
   local: true,
   cta: { label: "Learn More", href: "/#services" },
   features: [
